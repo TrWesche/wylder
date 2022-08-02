@@ -1,0 +1,3 @@
+[submodule "Wylder/vendor/spdlog"]
+	path = Wylder/vendor/spdlog
+	url = https://github.com/gabime/spdlog

@@ -4,6 +4,7 @@
 
 
 #include "Wylder/Application.h"
+#include "Wylder/Log.h"
 #include <stdio.h>
 
 
