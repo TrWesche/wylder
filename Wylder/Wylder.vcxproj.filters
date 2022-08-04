@@ -1,42 +1,49 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Wylder">
+      <UniqueIdentifier>{3C589ADB-28FA-C4B1-11B5-D805FDF54B02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Wylder\Events">
+      <UniqueIdentifier>{A0E86A56-0CA9-E68C-D5E3-2F0A41632B69}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Wylder\Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Wylder.h" />
     <ClInclude Include="src\Wylder\Application.h">
-      <Filter>Header Files</Filter>
+      <Filter>Wylder</Filter>
     </ClInclude>
-    <ClInclude Include="src\Wylder.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Wylder\Core.h">
+      <Filter>Wylder</Filter>
     </ClInclude>
     <ClInclude Include="src\Wylder\EntryPoint.h">
-      <Filter>Header Files</Filter>
+      <Filter>Wylder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wylder\Events\ApplicationEvent.h">
+      <Filter>Wylder\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wylder\Events\Event.h">
+      <Filter>Wylder\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wylder\Events\KeyEvent.h">
+      <Filter>Wylder\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wylder\Events\MouseEvent.h">
+      <Filter>Wylder\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wylder\Events\WindowEvent.h">
+      <Filter>Wylder\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Wylder\Log.h">
-      <Filter>Header Files</Filter>
+      <Filter>Wylder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Wylder\Application.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Wylder</Filter>
     </ClCompile>
     <ClCompile Include="src\Wylder\Log.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Wylder</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
