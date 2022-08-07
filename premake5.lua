@@ -4,6 +4,13 @@ workspace "Wylder"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Create a Struct which will hold all of the include directories.  Simplifies file complexity by concentrating all of the includes in a single space in the file.
+IncludeDir = {}
+IncludeDir["GLFW"] = "Wylder/vendor/GLFW/include"
+
+-- This tells premake to search these directories for additional premake5.lua files to process.
+include "Wylder/vendor/GLFW"
+
 project "Wylder"
 	location "Wylder"
 	kind "SharedLib"
@@ -12,6 +19,9 @@ project "Wylder"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "wypch.h"
+	pchsource "Wylder/src/wypch.cpp"
+
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
@@ -19,12 +29,18 @@ project "Wylder"
 
 	includedirs {
 		"%{prj.name}/vendor/spdlog/include",
-		"%{wks.name}/src"
+		"%{wks.name}/src",
+		"%{IncludeDir.GLFW}"
+	}
+
+	-- Setup Project Dependencies
+	links {
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines{
@@ -38,17 +54,24 @@ project "Wylder"
 
 
 	filter "configurations:Debug"
-		defines "HZ_DEBUG"
+		defines "WY_DEBUG"
+		defines "WY_ENABLE_ASSERTS"
+		staticruntime "off"
+		runtime "Debug"
 		symbols "On"
 
 
 	filter "configurations:Release"
-		defines "HZ_RELEASE"
+		defines "WY_RELEASE"
+		staticruntime "off"
+		runtime "Release"
 		optimize "On"
 
 
 	filter "configurations:Dist"
-		defines "HZ_DIST"
+		defines "WY_DIST"
+		staticruntime "off"
+		runtime "Release"
 		optimize "On"
 
 
@@ -77,7 +100,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines{
@@ -85,15 +107,22 @@ project "Sandbox"
 		}
 
 	filter "configurations:Debug"
-		defines "HZ_DEBUG"
+		defines "WY_DEBUG"
+		defines "WY_ENABLE_ASSERTS"
+		staticruntime "On"
+		runtime "Debug"
 		symbols "On"
 
 
 	filter "configurations:Release"
-		defines "HZ_RELEASE"
+		defines "WY_RELEASE"
+		staticruntime "On"
+		runtime "Release"
 		optimize "On"
 
 
 	filter "configurations:Dist"
-		defines "HZ_DIST"
+		defines "WY_DIST"
+		staticruntime "On"
+		runtime "Release"
 		optimize "On"

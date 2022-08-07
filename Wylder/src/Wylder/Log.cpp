@@ -1,3 +1,4 @@
+#include "wypch.h"
 #include "Log.h"
 
 namespace Wylder {

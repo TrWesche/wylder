@@ -2,10 +2,6 @@
 
 #include "Wylder/Core.h"
 
-#include <string>
-#include <functional>
-#include <sstream>
-
 namespace Wylder {
 
 	// Events in Wylder are currently blocking.  A buffer for events is likely a better long term

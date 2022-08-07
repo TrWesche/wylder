@@ -14,4 +14,14 @@
 #endif
 
 
+#ifdef WY_ENABLE_ASSERTS
+	#ifdef WY_PLATFORM_WINDOWS
+		#define WY_ASSERT(x, ...) {if (!(x)) { WY_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); }} // If an assertion fails in processing break out of processing loop
+		#define WY_CORE_ASSERT(x, ...) {if (!(x)) { WY_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); }}
+	#endif // WY_PLATFORM_WINDOWS
+#else
+	#define WY_ASSERT(x,...);
+	#define WY_CORE_ASSERT(x,...);
+#endif
+
 #define BIT(x) (1 << x)

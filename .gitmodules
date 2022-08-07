@@ -1,3 +1,6 @@
 [submodule "Wylder/vendor/spdlog"]
 	path = Wylder/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Wylder/vendor/GLFW"]
+	path = Wylder/vendor/GLFW
+	url = https://github.com/TrWesche/glfw

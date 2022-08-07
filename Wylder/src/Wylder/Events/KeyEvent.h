@@ -1,7 +1,7 @@
 #pragma once
 
+#include "wypch.h"
 #include "Event.h"
-
 
 namespace Wylder {
 	class WYLDER_API KeyEvent : public Event {
