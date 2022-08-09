@@ -4,8 +4,8 @@
 
 
 #include "Wylder/Application.h"
+#include "Wylder/Layer.h"
 #include "Wylder/Log.h"
-#include <stdio.h>
 
 
 // --- Entry Point -----------------

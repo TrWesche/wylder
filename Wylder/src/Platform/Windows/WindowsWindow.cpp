@@ -1,11 +1,13 @@
 #include "wypch.h"
 #include "WindowsWindow.h"
 
-#include <GLFW/glfw3.h>
+//#include <GLFW/glfw3.h>
 #include "Wylder/Events/WindowEvent.h"
 #include "Wylder/Events/ApplicationEvent.h"
 #include "Wylder/Events/KeyEvent.h"
 #include "Wylder/Events/MouseEvent.h"
+
+#include <glad/glad.h>
 
 namespace Wylder {
 	static bool sGLFWInitialized = false;
@@ -48,6 +50,10 @@ namespace Wylder {
 		if (!mWindow) { WY_CORE_ERROR("OpenGL GLFW - Create Window Failed"); } // Probably want to capture more data here
 
 		glfwMakeContextCurrent(mWindow);
+		
+		int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+		WY_CORE_ASSERT(status, "GLAD LoadGLLoad Failed to Initialize OpenGL context");
+
 		glfwSetWindowUserPointer(mWindow, &mData);  // Setting the window to reference the mData struct
 		SetVSync(true);
 

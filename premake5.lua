@@ -7,9 +7,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Create a Struct which will hold all of the include directories.  Simplifies file complexity by concentrating all of the includes in a single space in the file.
 IncludeDir = {}
 IncludeDir["GLFW"] = "Wylder/vendor/GLFW/include"
+IncludeDir["Glad"] = "Wylder/vendor/Glad/include"
 
 -- This tells premake to search these directories for additional premake5.lua files to process.
 include "Wylder/vendor/GLFW"
+include "Wylder/vendor/Glad"
 
 project "Wylder"
 	location "Wylder"
@@ -30,12 +32,14 @@ project "Wylder"
 	includedirs {
 		"%{prj.name}/vendor/spdlog/include",
 		"%{wks.name}/src",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	-- Setup Project Dependencies
 	links {
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -45,7 +49,8 @@ project "Wylder"
 
 		defines{
 			"WY_PLATFORM_WINDOWS",
-			"WY_BUILD_DLL"
+			"WY_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 	postbuildcommands {
@@ -109,20 +114,20 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "WY_DEBUG"
 		defines "WY_ENABLE_ASSERTS"
-		staticruntime "On"
+		staticruntime "off"
 		runtime "Debug"
 		symbols "On"
 
 
 	filter "configurations:Release"
 		defines "WY_RELEASE"
-		staticruntime "On"
+		staticruntime "off"
 		runtime "Release"
 		optimize "On"
 
 
 	filter "configurations:Dist"
 		defines "WY_DIST"
-		staticruntime "On"
+		staticruntime "off"
 		runtime "Release"
 		optimize "On"

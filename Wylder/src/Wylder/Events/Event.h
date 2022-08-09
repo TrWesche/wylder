@@ -51,10 +51,9 @@ namespace Wylder {
 		inline bool CheckEventCategory(EventCategory category) {
 			return GetEventCategoryFlags() & category;
 		}
-	protected:
-		// This boolean will allow for engine layers filter events as they propogate through the program rather than performing full event functionality on each layer
-		bool mHandled = false;
 
+		// This boolean will allow for engine layers filter events as they propogate through the program rather than performing full event functionality on each layer
+		bool Handled = false;
 	};
 
 
@@ -69,7 +68,7 @@ namespace Wylder {
 		template<typename T>
 		bool Dispatch(EventFn<T> func) {
 			if (mEvent.GetEventType() == T::GetStaticType()) {
-				mEvent.mHandled = func(*(T*)&mEvent);
+				mEvent.Handled = func(*(T*)&mEvent);
 				return true;
 			}
 			return false;
