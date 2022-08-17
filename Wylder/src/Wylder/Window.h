@@ -33,7 +33,7 @@ namespace Wylder {
 		virtual void OnUpdate() = 0;
 
 		virtual unsigned int GetWidth() = 0;
-		virtual unsigned int GeHeight() = 0;
+		virtual unsigned int GetHeight() = 0;
 		//virtual xxxx GetFullScreenMonitor() = 0;
 
 		// Window Attributes

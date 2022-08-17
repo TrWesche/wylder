@@ -4,3 +4,9 @@
 [submodule "Wylder/vendor/GLFW"]
 	path = Wylder/vendor/GLFW
 	url = https://github.com/TrWesche/glfw
+[submodule "Wylder/vendor/imgui"]
+	path = Wylder/vendor/imgui
+	url = https://github.com/TrWesche/imgui
+[submodule "Wylder/vendor/ImGui"]
+	path = Wylder/vendor/ImGui
+	url = https://github.com/TrWesche/imgui

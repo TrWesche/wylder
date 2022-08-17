@@ -21,6 +21,8 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Wylder::ImGuiLayer());
+
 	}
 
 	~Sandbox()

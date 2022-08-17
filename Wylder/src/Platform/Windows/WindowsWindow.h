@@ -17,7 +17,7 @@ namespace Wylder {
 
 		void OnUpdate() override;
 
-		inline unsigned int GeHeight() override { return mData.Height; }
+		inline unsigned int GetHeight() override { return mData.Height; }
 		inline unsigned int GetWidth() override { return mData.Width; }
 		//inline bool GetFullScreenMonitor() override { return mData.FullScreenMonitor; }
 

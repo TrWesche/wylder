@@ -7,6 +7,8 @@
 #include "Wylder/Layer.h"
 #include "Wylder/Log.h"
 
+#include "Wylder/GUI/ImGuiLayer.h"
+
 
 // --- Entry Point -----------------
 #include "Wylder/EntryPoint.h"

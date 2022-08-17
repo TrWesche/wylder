@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="GraphicsAPI">
+      <UniqueIdentifier>{70A29E76-DC57-176C-654C-1143D1000E70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicsAPI\OpenGL">
+      <UniqueIdentifier>{A42DBE00-9011-7F56-F971-79A9E57469D8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
@@ -13,8 +19,14 @@
     <Filter Include="Wylder\Events">
       <UniqueIdentifier>{A0E86A56-0CA9-E68C-D5E3-2F0A41632B69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Wylder\GUI">
+      <UniqueIdentifier>{50155F55-3CCD-A0A2-A5D4-79FE91AB3B93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GraphicsAPI\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>GraphicsAPI\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -43,6 +55,9 @@
     <ClInclude Include="src\Wylder\Events\WindowEvent.h">
       <Filter>Wylder\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Wylder\GUI\ImGuiLayer.h">
+      <Filter>Wylder\GUI</Filter>
+    </ClInclude>
     <ClInclude Include="src\Wylder\Layer.h">
       <Filter>Wylder</Filter>
     </ClInclude>
@@ -58,11 +73,17 @@
     <ClInclude Include="src\wypch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GraphicsAPI\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>GraphicsAPI\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Wylder\Application.cpp">
       <Filter>Wylder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Wylder\GUI\ImGuiLayer.cpp">
+      <Filter>Wylder\GUI</Filter>
     </ClCompile>
     <ClCompile Include="src\Wylder\Layer.cpp">
       <Filter>Wylder</Filter>

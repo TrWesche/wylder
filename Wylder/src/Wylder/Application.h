@@ -26,7 +26,15 @@ namespace Wylder {
 
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
+
+		inline static Application& Get() {
+			return *sInstance;
+		}
+
+		inline Window& GetWindow() { return *mWindow; }
 	private:
+		static Application* sInstance;
+
 		std::unique_ptr<Window> mWindow;
 		bool mRunning = true;
 

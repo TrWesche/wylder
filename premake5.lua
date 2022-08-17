@@ -8,10 +8,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Wylder/vendor/GLFW/include"
 IncludeDir["Glad"] = "Wylder/vendor/Glad/include"
+IncludeDir["ImGui"] = "Wylder/vendor/ImGui"
 
 -- This tells premake to search these directories for additional premake5.lua files to process.
 include "Wylder/vendor/GLFW"
 include "Wylder/vendor/Glad"
+include "Wylder/vendor/ImGui"
 
 project "Wylder"
 	location "Wylder"
@@ -33,14 +35,16 @@ project "Wylder"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{wks.name}/src",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	-- Setup Project Dependencies
 	links {
 		"GLFW",
 		"Glad",
-		"opengl32.lib"
+		"opengl32.lib",
+		"ImGui"
 	}
 
 	filter "system:windows"
