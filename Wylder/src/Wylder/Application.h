@@ -36,6 +36,7 @@ namespace Wylder {
 		static Application* sInstance;
 
 		std::unique_ptr<Window> mWindow;
+
 		bool mRunning = true;
 
 		// Event Functions

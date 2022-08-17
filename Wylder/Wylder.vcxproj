@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\GraphicsAPI\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\GraphicsAPI\OpenGL\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Wylder.h" />
     <ClInclude Include="src\Wylder\Application.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="src\Wylder\Events\KeyEvent.h" />
     <ClInclude Include="src\Wylder\Events\MouseEvent.h" />
     <ClInclude Include="src\Wylder\Events\WindowEvent.h" />
+    <ClInclude Include="src\Wylder\GUI\ImGuiGLFWImpl.h" />
     <ClInclude Include="src\Wylder\GUI\ImGuiLayer.h" />
     <ClInclude Include="src\Wylder\Layer.h" />
     <ClInclude Include="src\Wylder\LayerStack.h" />
@@ -171,6 +173,7 @@
     <ClCompile Include="src\GraphicsAPI\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Wylder\Application.cpp" />
+    <ClCompile Include="src\Wylder\GUI\ImGuiGLFWImpl.cpp" />
     <ClCompile Include="src\Wylder\GUI\ImGuiLayer.cpp" />
     <ClCompile Include="src\Wylder\Layer.cpp" />
     <ClCompile Include="src\Wylder\LayerStack.cpp" />

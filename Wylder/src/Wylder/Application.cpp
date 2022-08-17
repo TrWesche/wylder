@@ -31,11 +31,12 @@ namespace Wylder {
 		{
 			glClearColor(0, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
-			mWindow->OnUpdate();
-			
 			for (Layer* layer : mLayerStack) {
 				layer->OnUpdate();
 			}
+
+			mWindow->OnUpdate();
+			
 		}
 	}
 

@@ -5,8 +5,9 @@
 
 #include "GraphicsAPI/OpenGL/ImGuiOpenGLRenderer.h"
 #include "imgui.h"
-#include "GLFW/glfw3.h"
-//#include "backends/imgui_impl_glfw.h"
+#include <GLFW/glfw3.h>
+#include "Wylder/GUI/ImGuiGLFWImpl.h"
+#include <glad/glad.h>
 
 namespace Wylder {
     // The ImGui Key Handling Technique has changed significantly since tutorial was created and is run through callback functions now
@@ -21,17 +22,23 @@ namespace Wylder {
 
 	void ImGuiLayer::OnAttach()
 	{
-		IMGUI_CHECKVERSION();
+		WY_INFO("ImGuiLayer Attach");
+
+		Application& app = Application::Get();
+		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
+
+		//IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
-
-		ImGuiIO& io = ImGui::GetIO();
-		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
-		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
-		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableSetMousePos;
-
 		ImGui::StyleColorsDark();
 
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
+		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
+
+
 		
+
+		ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
 
@@ -41,22 +48,24 @@ namespace Wylder {
 
 	void ImGuiLayer::OnUpdate()
 	{
+		WY_INFO("ImGuiLayer: Update");
+		
 		Application& app = Application::Get();
 		ImGuiIO& io = ImGui::GetIO();
-
 		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
 
 		float time = (float)glfwGetTime();
 		io.DeltaTime = (mTime > 0.0f ? (time - mTime) : (1.0f / 60.0f));
+		mTime = time;
 
-		//ImGui_ImplGlfw_NewFrame();
+
 		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
 		// Demo Window for Testing
 		static bool show_demo_window = true;
-		if (show_demo_window)
-			ImGui::ShowDemoWindow(&show_demo_window);
+		ImGui::ShowDemoWindow(&show_demo_window);
 
 		//static bool show_simple_window = true;
 		//if (show_simple_window) {

@@ -6,7 +6,7 @@ namespace Wylder {
 	class LayerStack
 	{
 	public:
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 
 		void PushLayer(Layer* layer);
@@ -21,7 +21,9 @@ namespace Wylder {
 
 	private:
 		std::vector<Layer*> mLayers;
-		std::vector<Layer*>::iterator mLayerInsert;
+		//std::vector<Layer*>::iterator mLayerInsert;
+
+		unsigned int m_LayerInsertIndex = 0;
 	};
 }
 

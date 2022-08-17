@@ -7,11 +7,11 @@ public:
 	ExampleLayer() : Layer("ExampleLayer") {}
 
 	void OnUpdate() override {
-		WY_INFO("Example Layer: Update");
+		//WY_INFO("Example Layer: Update");
 	}
 
 	void OnEvent(Wylder::Event& event) override {
-		WY_TRACE("{0}", event);
+		//WY_TRACE("{0}", event);
 	}
 };
 
@@ -20,8 +20,9 @@ class Sandbox : public Wylder::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
 		PushOverlay(new Wylder::ImGuiLayer());
+		PushLayer(new ExampleLayer());
+		
 
 	}
 

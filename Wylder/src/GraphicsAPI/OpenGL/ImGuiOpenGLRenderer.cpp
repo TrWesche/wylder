@@ -85,6 +85,11 @@
 //  ES 3.0    300       "#version 300 es"   = WebGL 2.0
 //----------------------------------------
 
+#define IMGUI_IMPL_OPENGL_LOADER_CUSTOM
+#if defined(IMGUI_IMPL_OPENGL_LOADER_CUSTOM)
+#include "glad/glad.h"
+#endif
+
 #if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
 #define _CRT_SECURE_NO_WARNINGS
 #endif
@@ -131,10 +136,7 @@
 #else
 #include <GLES3/gl3.h>          // Use GL ES 3
 #endif
-//#elif !defined(IMGUI_IMPL_OPENGL_LOADER_CUSTOM)
-#else
-#define IMGUI_IMPL_OPENGL_LOADER_CUSTOM
-#include "glad/glad.h"
+#elif !defined(IMGUI_IMPL_OPENGL_LOADER_CUSTOM)
 // Modern desktop OpenGL doesn't have a standard portable header file to load OpenGL function pointers.
 // Helper libraries are often used for this purpose! Here we are using our own minimal custom loader based on gl3w.
 // In the rest of your app/engine, you can use another loader of your choice (gl3w, glew, glad, glbinding, glext, glLoadGen, etc.).
@@ -142,8 +144,8 @@
 // - You may need to regenerate imgui_impl_opengl3_loader.h to add new symbols. See https://github.com/dearimgui/gl3w_stripped
 // - You can temporarily use an unstripped version. See https://github.com/dearimgui/gl3w_stripped/releases
 // Changes to this backend using new APIs should be accompanied by a regenerated stripped loader version.
-//#define IMGL3W_IMPL
-//#include "imgui_impl_opengl3_loader.h"
+#define IMGL3W_IMPL
+#include "imgui_impl_opengl3_loader.h"
 #endif
 
 // Vertex arrays are not supported on ES2/WebGL1 unless Emscripten which uses an extension
@@ -242,13 +244,11 @@ bool    ImGui_ImplOpenGL3_Init(const char* glsl_version)
 
     // Initialize our loader
 #if !defined(IMGUI_IMPL_OPENGL_ES2) && !defined(IMGUI_IMPL_OPENGL_ES3) && !defined(IMGUI_IMPL_OPENGL_LOADER_CUSTOM)
-   /* if (imgl3wInit() != 0)
+   if (imgl3wInit() != 0)
     {
         fprintf(stderr, "Failed to initialize OpenGL loader!\n");
         return false;
-    }*/
-    fprintf(stderr, "Failed to initialize ImGui Renderer, no OpenGL Loader found.\n");
-    return false;
+    }
 #endif
 
     // Setup backend capabilities flags

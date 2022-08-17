@@ -25,6 +25,8 @@ namespace Wylder {
 		virtual void SetEventCallback(const EventCallbackFn& callback) override { mData.EventCallback = callback; }
 		virtual void SetVSync(bool enabled) override;
 		virtual bool IsVSync() const override;
+
+		virtual void* GetNativeWindow() const { return mWindow; }
 	private:
 		GLFWwindow* mWindow;
 
