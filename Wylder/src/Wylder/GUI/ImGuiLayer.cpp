@@ -71,18 +71,29 @@ namespace Wylder {
 	void ImGuiLayer::OnEvent(Event& event)
 	{
 		WY_INFO("ImGui Layer: Event Received {0}", event.GetEventName());
-		if (event.GetEventType() == EventType::KeyPressed) {
-			OnKeyPressed(static_cast<KeyEvent&>(event));
-        }
-        else if (event.GetEventType() == EventType::MouseButtonPressed)
+        switch (event.GetEventType())
         {
+        case EventType::KeyPressed:
+            OnKeyPressed(static_cast<KeyPressedEvent&>(event));
+            break;
+        case EventType::KeyReleased:
+            OnKeyReleased(static_cast<KeyReleasedEvent&>(event));
+            break;
+        case EventType::MouseButtonPressed:
             OnMouseButtonPressed(static_cast<MouseButtonPressedEvent&>(event));
-        }
-        else if (event.GetEventType() == EventType::MouseMoved)
-        {
+            break;
+        case EventType::MouseButtonReleased:
+            OnMouseButtonReleased(static_cast<MouseButtonReleasedEvent&>(event));
+            break;
+        case EventType::MouseMoved:
             OnMouseMovedEvent(static_cast<MouseMovedEvent&>(event));
+            break;
+        case EventType::MouseScrolled:
+            OnMouseScrolledEvent(static_cast<MouseScrolledEvent&>(event));
+            break;
+        default:
+            break;
         }
-
 	}
 
 
@@ -199,28 +210,53 @@ namespace Wylder {
 	}
 
 
-    bool ImGuiLayer::OnKeyPressed(KeyEvent& event)
+    bool ImGuiLayer::OnKeyPressed(KeyPressedEvent& event)
     {
-        WY_INFO("ImGui Layer Key Event Captured: GLFW Key = {0}, ImGuiKey = {1}", event.GetKeyCode(), TranslateGLFWKeytoImGuiKey(event.GetKeyCode()) );
+        //WY_INFO("ImGui Layer Key Pressed Event Captured: GLFW Key = {0}, ImGuiKey = {1}", event.GetKeyCode(), TranslateGLFWKeytoImGuiKey(event.GetKeyCode()) );
         ImGuiKey eventKey = TranslateGLFWKeytoImGuiKey(event.GetKeyCode());
         ImGuiIO& io = ImGui::GetIO();
         io.AddKeyEvent(eventKey, GLFW_PRESS);
         return false;
     }
 
+    bool ImGuiLayer::OnKeyReleased(KeyReleasedEvent& event)
+    {
+        //WY_INFO("ImGui Layer Key Released Event Captured: GLFW Key = {0}, ImGuiKey = {1}", event.GetKeyCode(), TranslateGLFWKeytoImGuiKey(event.GetKeyCode()));
+        ImGuiKey eventKey = TranslateGLFWKeytoImGuiKey(event.GetKeyCode());
+        ImGuiIO& io = ImGui::GetIO();
+        io.AddKeyEvent(eventKey, GLFW_RELEASE);
+        return false;
+    }
+
     bool ImGuiLayer::OnMouseButtonPressed(MouseButtonPressedEvent& event)
     {
-        WY_INFO("ImGui Layer Mouse Button Event Captured: GLFW Key = {0}", event.GetButtonIdentifier());
+        //WY_INFO("ImGui Layer Mouse Button Pressed Event Captured: GLFW Key = {0}", event.GetButtonIdentifier());
         ImGuiIO& io = ImGui::GetIO();
         io.AddMouseButtonEvent(event.GetButtonIdentifier(), GLFW_PRESS);
         return false;
     }
 
+    bool ImGuiLayer::OnMouseButtonReleased(MouseButtonReleasedEvent& event)
+    {
+        //WY_INFO("ImGui Layer Mouse Button Released Event Captured: GLFW Key = {0}", event.GetButtonIdentifier());
+        ImGuiIO& io = ImGui::GetIO();
+        io.AddMouseButtonEvent(event.GetButtonIdentifier(), GLFW_RELEASE);
+        return false;
+    }
+
     bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& event)
     {
-        WY_INFO("ImGui Layer Mouse Move Event Captured: X: {0}, Y: {1}", event.GetPositionX(), event.GetPositionY());
+        //WY_INFO("ImGui Layer Mouse Move Event Captured: X: {0}, Y: {1}", event.GetPositionX(), event.GetPositionY());
         ImGuiIO& io = ImGui::GetIO();
         io.AddMousePosEvent(event.GetPositionX(), event.GetPositionY());
+        return false;
+    }
+
+    bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent& event)
+    {
+        //WY_INFO("ImGui Layer Mouse Scroll Event Captured: OffsetX: {0}, OffsetY: {1}", event.GetOffsetX(), event.GetOffsetY());
+        ImGuiIO& io = ImGui::GetIO();
+        io.AddMouseWheelEvent(event.GetOffsetX(), event.GetOffsetY());
         return false;
     }
 }

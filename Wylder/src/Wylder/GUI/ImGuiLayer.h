@@ -21,11 +21,17 @@ namespace Wylder {
 
 		void OnEvent(Event& event) override;
 
-		bool OnKeyPressed(KeyEvent& event);
+		bool OnKeyPressed(KeyPressedEvent& event);
+
+		bool OnKeyReleased(KeyReleasedEvent& event);
 
 		bool OnMouseButtonPressed(MouseButtonPressedEvent& event);
 
+		bool OnMouseButtonReleased(MouseButtonReleasedEvent& event);
+
 		bool OnMouseMovedEvent(MouseMovedEvent& event);
+
+		bool OnMouseScrolledEvent(MouseScrolledEvent& event);
 	private:
 		float mTime = 0.0f;
 
