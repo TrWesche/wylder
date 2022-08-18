@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Wylder/Layer.h"
+#include "Wylder/Events/KeyEvent.h"
+#include "Wylder/Events/MouseEvent.h"
 
 namespace Wylder {
 	class Event;
@@ -11,13 +13,19 @@ namespace Wylder {
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void OnAttach();
+		void OnAttach() override;
 
-		void OnDetach();
+		void OnDetach() override;
 
-		void OnUpdate();
+		void OnUpdate() override;
 
-		void OnEvent(Event& event);
+		void OnEvent(Event& event) override;
+
+		bool OnKeyPressed(KeyEvent& event);
+
+		bool OnMouseButtonPressed(MouseButtonPressedEvent& event);
+
+		bool OnMouseMovedEvent(MouseMovedEvent& event);
 	private:
 		float mTime = 0.0f;
 

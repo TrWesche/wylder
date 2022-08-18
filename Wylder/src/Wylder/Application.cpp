@@ -36,7 +36,6 @@ namespace Wylder {
 			}
 
 			mWindow->OnUpdate();
-			
 		}
 	}
 
