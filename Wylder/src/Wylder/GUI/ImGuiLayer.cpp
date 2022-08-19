@@ -218,10 +218,29 @@ namespace Wylder {
     static void ImGuiUpdateKeyModifiers(int mods, bool down)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.AddKeyEvent(ImGuiKey_ModCtrl, (mods & GLFW_MOD_CONTROL) != 0 && down);
-        io.AddKeyEvent(ImGuiKey_ModShift, (mods & GLFW_MOD_SHIFT) != 0 && down);
-        io.AddKeyEvent(ImGuiKey_ModAlt, (mods & GLFW_MOD_ALT) != 0 && down);
-        io.AddKeyEvent(ImGuiKey_ModSuper, (mods & GLFW_MOD_SUPER) != 0 && down);
+        
+        int ioKeyMods = 0;
+        if (io.KeyMods & 0x0001)                // ImGui Control = 0x0001 while GLFW Control = 0x0002
+            ioKeyMods = ioKeyMods | 0x0002;
+        if (io.KeyMods & 0x0002)                // ImGui Shift = 0x0002 while GLFW Shift = 0x0001
+            ioKeyMods = ioKeyMods | 0x0001;
+        if (io.KeyMods & 0x0004)
+            ioKeyMods = ioKeyMods | 0x0004;
+        if (io.KeyMods & 0x0008)
+            ioKeyMods = ioKeyMods | 0x0008;
+
+        int accMods = mods;
+        //WY_INFO("Modifier Key Pressed {0}, io.KeyMods {1}, ioKeyMods {2}", mods, io.KeyMods, ioKeyMods);
+        if (down) {
+            accMods = mods | ioKeyMods;
+            //WY_INFO("Accumulated Modifiers: {0}", accMods);
+        }
+            
+
+        io.AddKeyEvent(ImGuiKey_ModCtrl, (accMods & GLFW_MOD_CONTROL) != 0 && down);
+        io.AddKeyEvent(ImGuiKey_ModShift, (accMods & GLFW_MOD_SHIFT) != 0 && down);
+        io.AddKeyEvent(ImGuiKey_ModAlt, (accMods & GLFW_MOD_ALT) != 0 && down);
+        io.AddKeyEvent(ImGuiKey_ModSuper, (accMods & GLFW_MOD_SUPER) != 0 && down);
     }
 
     void ImGui_ImplGlfw_CharCallback(GLFWwindow* window, unsigned int c)
