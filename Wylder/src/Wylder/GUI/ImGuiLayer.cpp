@@ -70,30 +70,21 @@ namespace Wylder {
 
 	void ImGuiLayer::OnEvent(Event& event)
 	{
-		WY_INFO("ImGui Layer: Event Received {0}", event.GetEventName());
-        switch (event.GetEventType())
-        {
-        case EventType::KeyPressed:
-            OnKeyPressed(static_cast<KeyPressedEvent&>(event));
-            break;
-        case EventType::KeyReleased:
-            OnKeyReleased(static_cast<KeyReleasedEvent&>(event));
-            break;
-        case EventType::MouseButtonPressed:
-            OnMouseButtonPressed(static_cast<MouseButtonPressedEvent&>(event));
-            break;
-        case EventType::MouseButtonReleased:
-            OnMouseButtonReleased(static_cast<MouseButtonReleasedEvent&>(event));
-            break;
-        case EventType::MouseMoved:
-            OnMouseMovedEvent(static_cast<MouseMovedEvent&>(event));
-            break;
-        case EventType::MouseScrolled:
-            OnMouseScrolledEvent(static_cast<MouseScrolledEvent&>(event));
-            break;
-        default:
-            break;
-        }
+		//WY_INFO("ImGui Layer: Event Received {0}", event.GetEventName());
+        EventDispatcher Dispatcher(event);
+
+        Dispatcher.Dispatch<KeyPressedEvent>(std::bind(&ImGuiLayer::OnKeyPressed, this, std::placeholders::_1));
+        Dispatcher.Dispatch<KeyReleasedEvent>(std::bind(&ImGuiLayer::OnKeyReleased, this, std::placeholders::_1));
+        //Dispatcher.Dispatch<KeyInputCharEvent>(std::bind(&ImGuiLayer::OnKeyInputChar, this, std::placeholders::_1));
+
+        Dispatcher.Dispatch<MouseButtonPressedEvent>(std::bind(&ImGuiLayer::OnMouseButtonPressed, this, std::placeholders::_1));
+        Dispatcher.Dispatch<MouseButtonReleasedEvent>(std::bind(&ImGuiLayer::OnMouseButtonReleased, this, std::placeholders::_1));
+        Dispatcher.Dispatch<MouseMovedEvent>(std::bind(&ImGuiLayer::OnMouseMovedEvent, this, std::placeholders::_1));
+        Dispatcher.Dispatch<MouseScrolledEvent>(std::bind(&ImGuiLayer::OnMouseScrolledEvent, this, std::placeholders::_1));
+        
+        Dispatcher.Dispatch<WindowFocusEvent>(std::bind(&ImGuiLayer::OnWindowFocusEvent, this, std::placeholders::_1));
+        Dispatcher.Dispatch<WindowLostFocusEvent>(std::bind(&ImGuiLayer::OnWindowLostFocusEvent, this, std::placeholders::_1));
+        Dispatcher.Dispatch<WindowResizeEvent>(std::bind(&ImGuiLayer::OnWindowResizeEvent, this, std::placeholders::_1));
 	}
 
 
@@ -216,7 +207,7 @@ namespace Wylder {
         ImGuiKey eventKey = TranslateGLFWKeytoImGuiKey(event.GetKeyCode());
         ImGuiIO& io = ImGui::GetIO();
         io.AddKeyEvent(eventKey, GLFW_PRESS);
-        return false;
+        return true;
     }
 
     bool ImGuiLayer::OnKeyReleased(KeyReleasedEvent& event)
@@ -225,7 +216,7 @@ namespace Wylder {
         ImGuiKey eventKey = TranslateGLFWKeytoImGuiKey(event.GetKeyCode());
         ImGuiIO& io = ImGui::GetIO();
         io.AddKeyEvent(eventKey, GLFW_RELEASE);
-        return false;
+        return true;
     }
 
     bool ImGuiLayer::OnMouseButtonPressed(MouseButtonPressedEvent& event)
@@ -233,7 +224,7 @@ namespace Wylder {
         //WY_INFO("ImGui Layer Mouse Button Pressed Event Captured: GLFW Key = {0}", event.GetButtonIdentifier());
         ImGuiIO& io = ImGui::GetIO();
         io.AddMouseButtonEvent(event.GetButtonIdentifier(), GLFW_PRESS);
-        return false;
+        return true;
     }
 
     bool ImGuiLayer::OnMouseButtonReleased(MouseButtonReleasedEvent& event)
@@ -241,7 +232,7 @@ namespace Wylder {
         //WY_INFO("ImGui Layer Mouse Button Released Event Captured: GLFW Key = {0}", event.GetButtonIdentifier());
         ImGuiIO& io = ImGui::GetIO();
         io.AddMouseButtonEvent(event.GetButtonIdentifier(), GLFW_RELEASE);
-        return false;
+        return true;
     }
 
     bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& event)
@@ -249,7 +240,7 @@ namespace Wylder {
         //WY_INFO("ImGui Layer Mouse Move Event Captured: X: {0}, Y: {1}", event.GetPositionX(), event.GetPositionY());
         ImGuiIO& io = ImGui::GetIO();
         io.AddMousePosEvent(event.GetPositionX(), event.GetPositionY());
-        return false;
+        return true;
     }
 
     bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent& event)
@@ -257,7 +248,31 @@ namespace Wylder {
         //WY_INFO("ImGui Layer Mouse Scroll Event Captured: OffsetX: {0}, OffsetY: {1}", event.GetOffsetX(), event.GetOffsetY());
         ImGuiIO& io = ImGui::GetIO();
         io.AddMouseWheelEvent(event.GetOffsetX(), event.GetOffsetY());
-        return false;
+        return true;
+    }
+
+    bool ImGuiLayer::OnWindowFocusEvent(WindowFocusEvent& event) 
+    {
+        WY_INFO("ImGui Window Focus Event Captured: True");
+        ImGuiIO& io = ImGui::GetIO();
+        io.AddFocusEvent(true);
+        return true;
+    }
+
+    bool ImGuiLayer::OnWindowLostFocusEvent(WindowLostFocusEvent& event)
+    {
+        WY_INFO("ImGui Window Focus Event Captured: False");
+        ImGuiIO& io = ImGui::GetIO();
+        io.AddFocusEvent(false);
+        return true;
+    }
+
+    bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& event)
+    {
+        WY_INFO("ImGui Window Resize Event Captured: Dimension X={0}, Dimension Y={1}", event.GetSizeX(), event.GetSizeY());
+        ImGuiIO& io = ImGui::GetIO();
+        io.DisplaySize = ImVec2(event.GetSizeX(), event.GetSizeY());
+        return true;
     }
 }
 
