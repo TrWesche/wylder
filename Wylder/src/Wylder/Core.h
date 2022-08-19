@@ -25,3 +25,6 @@
 #endif
 
 #define BIT(x) (1 << x)
+
+
+#define WY_EVENT_FN_BIND(x) std::bind(&x, this, std::placeholders::_1)

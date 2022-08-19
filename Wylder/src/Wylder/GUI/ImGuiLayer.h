@@ -26,7 +26,7 @@ namespace Wylder {
 
 		bool OnKeyReleased(KeyReleasedEvent& event);
 
-		//bool OnKeyInputChar(KeyInputCharEvent& event);
+		bool OnKeyInputChar(KeyInputCharEvent& event);
 
 		bool OnMouseButtonPressed(MouseButtonPressedEvent& event);
 

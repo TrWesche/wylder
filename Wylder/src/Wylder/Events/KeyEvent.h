@@ -45,7 +45,7 @@ namespace Wylder {
 		KeyReleasedEvent(int keycode) : KeyEvent(keycode) {}
 
 		// Macro Functions
-		EVENT_CLASS_TYPE(KeyPressed);
+		EVENT_CLASS_TYPE(KeyReleased);
 
 		// Instance Functions
 		virtual std::string ToString() const override {
@@ -56,4 +56,24 @@ namespace Wylder {
 	private:
 		
 	};
+
+
+	class WYLDER_API KeyInputCharEvent : public KeyEvent {
+	public:
+		// Constructor
+		KeyInputCharEvent(int keycode) : KeyEvent(keycode) {}
+
+		// Macro Functions
+		EVENT_CLASS_TYPE(KeyInputChar);
+
+		// Instance Functions
+		virtual std::string ToString() const override {
+			std::stringstream ss;
+			ss << "KeyInputCharEvent: " << mKeyCode;
+			return ss.str();
+		}
+	private:
+
+	};
+	
 }

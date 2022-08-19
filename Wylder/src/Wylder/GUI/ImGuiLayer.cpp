@@ -5,13 +5,14 @@
 
 #include "GraphicsAPI/OpenGL/ImGuiOpenGLRenderer.h"
 #include "imgui.h"
-#include <GLFW/glfw3.h>
 #include "Wylder/GUI/ImGuiGLFWImpl.h"
+
+// Temporary Includes
+#include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
 namespace Wylder {
     // The ImGui Key Handling Technique has changed significantly since tutorial was created and is run through callback functions now
-
 	ImGuiLayer::ImGuiLayer() : Layer("ImGuiLayer")
 	{
 	}
@@ -73,18 +74,18 @@ namespace Wylder {
 		//WY_INFO("ImGui Layer: Event Received {0}", event.GetEventName());
         EventDispatcher Dispatcher(event);
 
-        Dispatcher.Dispatch<KeyPressedEvent>(std::bind(&ImGuiLayer::OnKeyPressed, this, std::placeholders::_1));
-        Dispatcher.Dispatch<KeyReleasedEvent>(std::bind(&ImGuiLayer::OnKeyReleased, this, std::placeholders::_1));
-        //Dispatcher.Dispatch<KeyInputCharEvent>(std::bind(&ImGuiLayer::OnKeyInputChar, this, std::placeholders::_1));
+        Dispatcher.Dispatch<KeyPressedEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnKeyPressed));
+        Dispatcher.Dispatch<KeyReleasedEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnKeyReleased));
+        Dispatcher.Dispatch<KeyInputCharEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnKeyInputChar));
 
-        Dispatcher.Dispatch<MouseButtonPressedEvent>(std::bind(&ImGuiLayer::OnMouseButtonPressed, this, std::placeholders::_1));
-        Dispatcher.Dispatch<MouseButtonReleasedEvent>(std::bind(&ImGuiLayer::OnMouseButtonReleased, this, std::placeholders::_1));
-        Dispatcher.Dispatch<MouseMovedEvent>(std::bind(&ImGuiLayer::OnMouseMovedEvent, this, std::placeholders::_1));
-        Dispatcher.Dispatch<MouseScrolledEvent>(std::bind(&ImGuiLayer::OnMouseScrolledEvent, this, std::placeholders::_1));
+        Dispatcher.Dispatch<MouseButtonPressedEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnMouseButtonPressed));
+        Dispatcher.Dispatch<MouseButtonReleasedEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnMouseButtonReleased));
+        Dispatcher.Dispatch<MouseMovedEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnMouseMovedEvent));
+        Dispatcher.Dispatch<MouseScrolledEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnMouseScrolledEvent));
         
-        Dispatcher.Dispatch<WindowFocusEvent>(std::bind(&ImGuiLayer::OnWindowFocusEvent, this, std::placeholders::_1));
-        Dispatcher.Dispatch<WindowLostFocusEvent>(std::bind(&ImGuiLayer::OnWindowLostFocusEvent, this, std::placeholders::_1));
-        Dispatcher.Dispatch<WindowResizeEvent>(std::bind(&ImGuiLayer::OnWindowResizeEvent, this, std::placeholders::_1));
+        Dispatcher.Dispatch<WindowFocusEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnWindowFocusEvent));
+        Dispatcher.Dispatch<WindowLostFocusEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnWindowLostFocusEvent));
+        Dispatcher.Dispatch<WindowResizeEvent>(WY_EVENT_FN_BIND(ImGuiLayer::OnWindowResizeEvent));
 	}
 
 
@@ -200,23 +201,77 @@ namespace Wylder {
         }
 	}
 
+    static int HandleGlfwKeyToModifier(int key)
+    {
+        if (key == GLFW_KEY_LEFT_CONTROL || key == GLFW_KEY_RIGHT_CONTROL)
+            return GLFW_MOD_CONTROL;
+        if (key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_SHIFT)
+            return GLFW_MOD_SHIFT;
+        if (key == GLFW_KEY_LEFT_ALT || key == GLFW_KEY_RIGHT_ALT)
+            return GLFW_MOD_ALT;
+        if (key == GLFW_KEY_LEFT_SUPER || key == GLFW_KEY_RIGHT_SUPER)
+            return GLFW_MOD_SUPER;
+        return 0;
+    }
+
+    // Will need to be able to handle multiple modifiers being pressed at once in the future
+    static void ImGuiUpdateKeyModifiers(int mods, bool down)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.AddKeyEvent(ImGuiKey_ModCtrl, (mods & GLFW_MOD_CONTROL) != 0 && down);
+        io.AddKeyEvent(ImGuiKey_ModShift, (mods & GLFW_MOD_SHIFT) != 0 && down);
+        io.AddKeyEvent(ImGuiKey_ModAlt, (mods & GLFW_MOD_ALT) != 0 && down);
+        io.AddKeyEvent(ImGuiKey_ModSuper, (mods & GLFW_MOD_SUPER) != 0 && down);
+    }
+
+    void ImGui_ImplGlfw_CharCallback(GLFWwindow* window, unsigned int c)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.AddInputCharacter(c);
+    }
 
     bool ImGuiLayer::OnKeyPressed(KeyPressedEvent& event)
     {
         //WY_INFO("ImGui Layer Key Pressed Event Captured: GLFW Key = {0}, ImGuiKey = {1}", event.GetKeyCode(), TranslateGLFWKeytoImGuiKey(event.GetKeyCode()) );
+        int keycode_to_mod = HandleGlfwKeyToModifier(event.GetKeyCode());
+        if (keycode_to_mod) {
+            //WY_INFO("ImGui Modifier Key Pressed, update key modifiers: Key {0}", keycode_to_mod);
+            ImGuiUpdateKeyModifiers(keycode_to_mod, GLFW_PRESS);
+        }
+
         ImGuiKey eventKey = TranslateGLFWKeytoImGuiKey(event.GetKeyCode());
         ImGuiIO& io = ImGui::GetIO();
         io.AddKeyEvent(eventKey, GLFW_PRESS);
+
+
+        //WY_INFO("Modifier Keys Pressed {0}", io.KeyMods);
         return true;
     }
 
     bool ImGuiLayer::OnKeyReleased(KeyReleasedEvent& event)
     {
         //WY_INFO("ImGui Layer Key Released Event Captured: GLFW Key = {0}, ImGuiKey = {1}", event.GetKeyCode(), TranslateGLFWKeytoImGuiKey(event.GetKeyCode()));
+        int keycode_to_mod = HandleGlfwKeyToModifier(event.GetKeyCode());
+        if (keycode_to_mod) {
+            //WY_INFO("ImGui Modifier Key Released, update key modifiers: Key {0}", keycode_to_mod);
+            ImGuiUpdateKeyModifiers(keycode_to_mod, GLFW_RELEASE);
+        }
+
         ImGuiKey eventKey = TranslateGLFWKeytoImGuiKey(event.GetKeyCode());
         ImGuiIO& io = ImGui::GetIO();
         io.AddKeyEvent(eventKey, GLFW_RELEASE);
+
+        //WY_INFO("Modifier Keys Released {0}", io.KeyMods);
         return true;
+    }
+
+    bool ImGuiLayer::OnKeyInputChar(KeyInputCharEvent& event)
+    {
+        WY_INFO("Character Input Event Triggered {0}", event.GetKeyCode());
+        ImGuiIO& io = ImGui::GetIO();
+        io.AddInputCharacter(event.GetKeyCode());
+
+        return false;
     }
 
     bool ImGuiLayer::OnMouseButtonPressed(MouseButtonPressedEvent& event)
@@ -272,6 +327,10 @@ namespace Wylder {
         WY_INFO("ImGui Window Resize Event Captured: Dimension X={0}, Dimension Y={1}", event.GetSizeX(), event.GetSizeY());
         ImGuiIO& io = ImGui::GetIO();
         io.DisplaySize = ImVec2(event.GetSizeX(), event.GetSizeY());
+        io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+        // Temporary
+        glViewport(0, 0, event.GetSizeX(), event.GetSizeY());
+
         return true;
     }
 }

@@ -20,7 +20,7 @@ namespace Wylder {
 		WindowResizeEvent(long sizex, long sizey) : mSizeX(sizex), mSizeY(sizey) {}
 
 		// Macro Functions
-		EVENT_CLASS_TYPE(WindowClose);
+		EVENT_CLASS_TYPE(WindowResize);
 		EVENT_CATEGORY_FLAGS(EventCategoryApplication);
 
 		// Instance Functions

@@ -94,6 +94,13 @@ namespace Wylder {
 			}
 		});
 
+		// Char Input Callback
+		glfwSetCharCallback(mWindow, [](GLFWwindow* window, unsigned int keycode) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyInputCharEvent event(keycode);
+			data.EventCallback(event);
+		});
+
 		// Mouse Button Callback
 		glfwSetMouseButtonCallback(mWindow, [](GLFWwindow* window, int button, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
