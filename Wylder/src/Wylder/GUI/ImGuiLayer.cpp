@@ -214,33 +214,37 @@ namespace Wylder {
         return 0;
     }
 
-    // Will need to be able to handle multiple modifiers being pressed at once in the future
     static void ImGuiUpdateKeyModifiers(int mods, bool down)
     {
         ImGuiIO& io = ImGui::GetIO();
         
+        // Translate ImGui Modifier Codes to GLFW Modifier Codes
         int ioKeyMods = 0;
-        if (io.KeyMods & 0x0001)                // ImGui Control = 0x0001 while GLFW Control = 0x0002
-            ioKeyMods = ioKeyMods | 0x0002;
-        if (io.KeyMods & 0x0002)                // ImGui Shift = 0x0002 while GLFW Shift = 0x0001
-            ioKeyMods = ioKeyMods | 0x0001;
-        if (io.KeyMods & 0x0004)
-            ioKeyMods = ioKeyMods | 0x0004;
-        if (io.KeyMods & 0x0008)
-            ioKeyMods = ioKeyMods | 0x0008;
+        if (io.KeyMods & ImGuiKeyModFlags_Ctrl)                 // ImGui Control = 0x0001 while GLFW Control = 0x0002
+            ioKeyMods = ioKeyMods | GLFW_MOD_CONTROL;
+        if (io.KeyMods & ImGuiKeyModFlags_Shift)                // ImGui Shift = 0x0002 while GLFW Shift = 0x0001
+            ioKeyMods = ioKeyMods | GLFW_MOD_SHIFT;
+        if (io.KeyMods & ImGuiKeyModFlags_Alt)
+            ioKeyMods = ioKeyMods | GLFW_MOD_ALT;
+        if (io.KeyMods & ImGuiKeyModFlags_Super)
+            ioKeyMods = ioKeyMods | GLFW_MOD_SUPER;
 
+        // Handle for Pressed / Released.  If pressed we want to accumulate the newly pressed key.
+        // If released we want to retain the previous pressed key and toggle the released key off.
         int accMods = mods;
-        //WY_INFO("Modifier Key Pressed {0}, io.KeyMods {1}, ioKeyMods {2}", mods, io.KeyMods, ioKeyMods);
         if (down) {
             accMods = mods | ioKeyMods;
-            //WY_INFO("Accumulated Modifiers: {0}", accMods);
+            WY_INFO("Acc Mods Pressed {0}", accMods);
         }
-            
-
-        io.AddKeyEvent(ImGuiKey_ModCtrl, (accMods & GLFW_MOD_CONTROL) != 0 && down);
-        io.AddKeyEvent(ImGuiKey_ModShift, (accMods & GLFW_MOD_SHIFT) != 0 && down);
-        io.AddKeyEvent(ImGuiKey_ModAlt, (accMods & GLFW_MOD_ALT) != 0 && down);
-        io.AddKeyEvent(ImGuiKey_ModSuper, (accMods & GLFW_MOD_SUPER) != 0 && down);
+        else {
+            accMods = ioKeyMods ^ mods;
+            WY_INFO("Acc Mods Released {0}", accMods);
+        }
+        
+        io.AddKeyEvent(ImGuiKey_ModCtrl, (accMods & GLFW_MOD_CONTROL) != 0);
+        io.AddKeyEvent(ImGuiKey_ModShift, (accMods & GLFW_MOD_SHIFT) != 0);
+        io.AddKeyEvent(ImGuiKey_ModAlt, (accMods & GLFW_MOD_ALT) != 0);
+        io.AddKeyEvent(ImGuiKey_ModSuper, (accMods & GLFW_MOD_SUPER) != 0);
     }
 
     void ImGui_ImplGlfw_CharCallback(GLFWwindow* window, unsigned int c)
