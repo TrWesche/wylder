@@ -16,5 +16,9 @@ namespace Wylder {
 		bool IsMouseButtonPressedImpl(const int button) override;
 
 		std::pair<float, float> GetMousePositionImpl() override;
+
+		float GetMousePosXImpl() override;
+
+		float GetMousePosYImpl() override;
 	};
 }

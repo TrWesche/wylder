@@ -34,6 +34,17 @@ namespace Wylder {
 		return std::pair<float, float>((float)XPosition, (float)YPosition);
 	}
 
+	float WindowsInput::GetMousePosXImpl()
+	{
+		auto[x, y] = GetMousePositionImpl();
+		return x;
+	}
+
+	float WindowsInput::GetMousePosYImpl()
+	{
+		auto [x, y] = GetMousePositionImpl();
+		return y;
+	}
 }
 
 

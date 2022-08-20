@@ -13,6 +13,8 @@ namespace Wylder {
 
 		inline bool IsMouseButtonPressed(const int button) { return sInstance->IsMouseButtonPressedImpl(button); }
 		inline std::pair<float, float> GetMousePosition() { return sInstance->GetMousePositionImpl(); }
+		inline float GetMousePosX() { return sInstance->GetMousePosXImpl(); }
+		inline float GetMousePosY() { return sInstance->GetMousePosYImpl(); }
 
 	protected:
 		// The protetected functions will be implemented per platform to allow for abstraction between the function 
@@ -25,5 +27,9 @@ namespace Wylder {
 		virtual bool IsMouseButtonPressedImpl(const int button) = 0;
 
 		virtual std::pair<float, float> GetMousePositionImpl() = 0;
+
+		virtual float GetMousePosXImpl() = 0;
+
+		virtual float GetMousePosYImpl() = 0;
 	};
 }
