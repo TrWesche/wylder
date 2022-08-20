@@ -75,6 +75,8 @@
     </ClInclude>
     <ClInclude Include="src\wypch.h" />
     <ClInclude Include="src\GraphicsAPI\OpenGL\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="src\Wylder\Input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GraphicsAPI\OpenGL\ImGuiOpenGLRenderer.cpp">
@@ -102,5 +104,6 @@
       <Filter>Wylder</Filter>
     </ClCompile>
     <ClCompile Include="src\wypch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

@@ -234,11 +234,11 @@ namespace Wylder {
         int accMods = mods;
         if (down) {
             accMods = mods | ioKeyMods;
-            WY_INFO("Acc Mods Pressed {0}", accMods);
+            //WY_INFO("Acc Mods Pressed {0}", accMods);
         }
         else {
             accMods = ioKeyMods ^ mods;
-            WY_INFO("Acc Mods Released {0}", accMods);
+            //WY_INFO("Acc Mods Released {0}", accMods);
         }
         
         io.AddKeyEvent(ImGuiKey_ModCtrl, (accMods & GLFW_MOD_CONTROL) != 0);

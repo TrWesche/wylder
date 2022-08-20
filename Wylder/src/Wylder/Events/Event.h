@@ -14,7 +14,8 @@ namespace Wylder {
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
 		KeyPressed, KeyReleased, KeyInputChar,
-		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
+		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled,
+		SetClipboardText, GetClipboardText
 	};
 
 	enum EventCategory
