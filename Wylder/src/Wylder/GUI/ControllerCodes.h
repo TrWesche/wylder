@@ -1,23 +1,4 @@
 #pragma once
-/*! @defgroup hat_state Joystick hat states
- *  @brief Joystick hat states.
- *
- *  See [joystick hat input](@ref joystick_hat) for how these are used.
- *
- *  @ingroup input
- *  @{ */
-#define WY_HAT_CENTERED           0
-#define WY_HAT_UP                 1
-#define WY_HAT_RIGHT              2
-#define WY_HAT_DOWN               4
-#define WY_HAT_LEFT               8
-#define WY_HAT_RIGHT_UP           (WY_HAT_RIGHT | WY_HAT_UP)
-#define WY_HAT_RIGHT_DOWN         (WY_HAT_RIGHT | WY_HAT_DOWN)
-#define WY_HAT_LEFT_UP            (WY_HAT_LEFT  | WY_HAT_UP)
-#define WY_HAT_LEFT_DOWN          (WY_HAT_LEFT  | WY_HAT_DOWN)
- /*! @} */
-
-
 /*! @defgroup joysticks Joysticks
 *  @brief Joystick IDs.
 *

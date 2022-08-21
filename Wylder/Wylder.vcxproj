@@ -162,8 +162,11 @@
     <ClInclude Include="src\Wylder\Events\KeyEvent.h" />
     <ClInclude Include="src\Wylder\Events\MouseEvent.h" />
     <ClInclude Include="src\Wylder\Events\WindowEvent.h" />
+    <ClInclude Include="src\Wylder\GUI\ControllerCodes.h" />
     <ClInclude Include="src\Wylder\GUI\ImGuiGLFWImpl.h" />
     <ClInclude Include="src\Wylder\GUI\ImGuiLayer.h" />
+    <ClInclude Include="src\Wylder\GUI\KeyCodes.h" />
+    <ClInclude Include="src\Wylder\GUI\MouseCodes.h" />
     <ClInclude Include="src\Wylder\Input.h" />
     <ClInclude Include="src\Wylder\Layer.h" />
     <ClInclude Include="src\Wylder\LayerStack.h" />

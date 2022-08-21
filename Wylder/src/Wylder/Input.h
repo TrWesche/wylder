@@ -9,12 +9,12 @@ namespace Wylder {
 		static Input* sInstance;
 		
 	public:
-		inline bool IsKeyPressed(const int keycode) { return sInstance->IsKeyPressedImpl(keycode); }
+		inline static bool IsKeyPressed(const int keycode) { return sInstance->IsKeyPressedImpl(keycode); }
 
-		inline bool IsMouseButtonPressed(const int button) { return sInstance->IsMouseButtonPressedImpl(button); }
-		inline std::pair<float, float> GetMousePosition() { return sInstance->GetMousePositionImpl(); }
-		inline float GetMousePosX() { return sInstance->GetMousePosXImpl(); }
-		inline float GetMousePosY() { return sInstance->GetMousePosYImpl(); }
+		inline static bool IsMouseButtonPressed(const int button) { return sInstance->IsMouseButtonPressedImpl(button); }
+		inline static std::pair<float, float> GetMousePosition() { return sInstance->GetMousePositionImpl(); }
+		inline static float GetMousePosX() { return sInstance->GetMousePosXImpl(); }
+		inline static float GetMousePosY() { return sInstance->GetMousePosYImpl(); }
 
 	protected:
 		// The protetected functions will be implemented per platform to allow for abstraction between the function 

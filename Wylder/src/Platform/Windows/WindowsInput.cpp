@@ -1,3 +1,4 @@
+#include "wypch.h"
 #include "WindowsInput.h"
 #include "WindowsWindow.h"
 #include "Wylder/Application.h"
@@ -9,7 +10,7 @@ namespace Wylder {
 	bool WindowsInput::IsKeyPressedImpl(const int keycode)
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		WY_ASSERT(!window, "Windows Input - Key Pressed Failed to retrieve GLFW window");
+		WY_ASSERT(window, "Windows Input - Key Pressed Failed to retrieve GLFW window");
 
 		return glfwGetKey(window, keycode);
 	}
@@ -17,7 +18,7 @@ namespace Wylder {
 	bool WindowsInput::IsMouseButtonPressedImpl(const int button)
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		WY_ASSERT(!window, "Windows Input - Mouse Button Pressed Failed to retrieve GLFW window");
+		WY_ASSERT(window, "Windows Input - Mouse Button Pressed Failed to retrieve GLFW window");
 		
 		return glfwGetMouseButton(window, button);
 	}
@@ -25,7 +26,7 @@ namespace Wylder {
 	std::pair<float, float> WindowsInput::GetMousePositionImpl()
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		WY_ASSERT(!window, "Windows Input - Mouse Button Pressed Failed to retrieve GLFW window");
+		WY_ASSERT(window, "Windows Input - Mouse Button Pressed Failed to retrieve GLFW window");
 
 		double XPosition, YPosition;
 

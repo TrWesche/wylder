@@ -2,7 +2,7 @@
 #include "Application.h"
 
 #include <glad/glad.h>
-
+#include "Wylder/Input.h"
 
 namespace Wylder {
 
@@ -34,6 +34,9 @@ namespace Wylder {
 			for (Layer* layer : mLayerStack) {
 				layer->OnUpdate();
 			}
+
+			auto [x, y] = Input::GetMousePosition();
+			WY_CORE_TRACE("{0}, {1}", x, y);
 
 			mWindow->OnUpdate();
 		}
