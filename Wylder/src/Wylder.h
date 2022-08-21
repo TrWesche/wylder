@@ -6,7 +6,9 @@
 #include "Wylder/Application.h"
 #include "Wylder/Layer.h"
 #include "Wylder/Log.h"
+
 #include "Wylder/Input.h"
+#include "Wylder/GUI/KeyCodes.h"
 
 #include "Wylder/GUI/ImGuiLayer.h"
 

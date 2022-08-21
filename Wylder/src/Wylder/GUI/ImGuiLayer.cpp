@@ -258,10 +258,12 @@ namespace Wylder {
         }
 
         ImGuiKey eventKey = TranslateWylderKeytoImGuiKey( ExtKeyToWylderKey(event.GetKeyCode()) );
+        WY_INFO("Key Pressed Event Triggered Event Key: {0}, Wylder Key: {1}, ImGui Key {2}", event.GetKeyCode(), ExtKeyToWylderKey(event.GetKeyCode()), eventKey);
+
         ImGuiIO& io = ImGui::GetIO();
         io.AddKeyEvent(eventKey, WY_PRESS);
 
-        return true;
+        return false;
     }
 
     bool ImGuiLayer::OnKeyReleased(KeyReleasedEvent& event)
@@ -275,12 +277,12 @@ namespace Wylder {
         ImGuiIO& io = ImGui::GetIO();
         io.AddKeyEvent(eventKey, WY_RELEASE);
 
-        return true;
+        return false;
     }
 
     bool ImGuiLayer::OnKeyInputChar(KeyInputCharEvent& event)
     {
-        WY_INFO("Character Input Event Triggered {0}", event.GetKeyCode());
+        //WY_INFO("Character Input Event Triggered {0}", event.GetKeyCode());
         ImGuiIO& io = ImGui::GetIO();
         io.AddInputCharacter(event.GetKeyCode());
 
@@ -291,7 +293,7 @@ namespace Wylder {
     {
         ImGuiIO& io = ImGui::GetIO();
         io.AddMouseButtonEvent( ExtMouseButtonToWylderMouseButton(event.GetButtonIdentifier()), WY_PRESS);
-        return true;
+        return false;
     }
 
     bool ImGuiLayer::OnMouseButtonReleased(MouseButtonReleasedEvent& event)
@@ -299,21 +301,21 @@ namespace Wylder {
         ImGuiIO& io = ImGui::GetIO();
         io.AddMouseButtonEvent( ExtMouseButtonToWylderMouseButton(event.GetButtonIdentifier()), WY_RELEASE);
 
-        return true;
+        return false;
     }
 
     bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& event)
     {
         ImGuiIO& io = ImGui::GetIO();
         io.AddMousePosEvent(event.GetPositionX(), event.GetPositionY());
-        return true;
+        return false;
     }
 
     bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent& event)
     {
         ImGuiIO& io = ImGui::GetIO();
         io.AddMouseWheelEvent(event.GetOffsetX(), event.GetOffsetY());
-        return true;
+        return false;
     }
 
     bool ImGuiLayer::OnWindowFocusEvent(WindowFocusEvent& event) 
@@ -321,14 +323,14 @@ namespace Wylder {
         WY_INFO("ImGui Window Focus Event Captured: True");
         ImGuiIO& io = ImGui::GetIO();
         io.AddFocusEvent(true);
-        return true;
+        return false;
     }
 
     bool ImGuiLayer::OnWindowLostFocusEvent(WindowLostFocusEvent& event)
     {
         ImGuiIO& io = ImGui::GetIO();
         io.AddFocusEvent(false);
-        return true;
+        return false;
     }
 
     bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& event)
@@ -339,6 +341,6 @@ namespace Wylder {
         // TODO:: Temporary
         glViewport(0, 0, event.GetSizeX(), event.GetSizeY());
 
-        return true;
+        return false;
     }
 }

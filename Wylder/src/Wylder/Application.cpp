@@ -35,8 +35,8 @@ namespace Wylder {
 				layer->OnUpdate();
 			}
 
-			auto [x, y] = Input::GetMousePosition();
-			WY_CORE_TRACE("{0}, {1}", x, y);
+			//auto [x, y] = Input::GetMousePosition();
+			//WY_CORE_TRACE("{0}, {1}", x, y);
 
 			mWindow->OnUpdate();
 		}

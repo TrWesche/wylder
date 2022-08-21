@@ -80,6 +80,7 @@ namespace Wylder {
 		// Key Press Callback
 		glfwSetKeyCallback(mWindow, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			//WY_INFO("Key Callback Action {0}", action);
 			if (action == GLFW_RELEASE) {
 				KeyReleasedEvent event(key);
 				data.EventCallback(event);
@@ -88,7 +89,7 @@ namespace Wylder {
 				KeyPressedEvent event(key, 1);
 				data.EventCallback(event);
 			}
-			else {
+			else if (action == GLFW_PRESS) {
 				KeyPressedEvent event(key, 0);
 				data.EventCallback(event);
 			}

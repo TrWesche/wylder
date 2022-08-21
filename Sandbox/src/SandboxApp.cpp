@@ -8,10 +8,18 @@ public:
 
 	void OnUpdate() override {
 		//WY_INFO("Example Layer: Update");
+
 	}
 
 	void OnEvent(Wylder::Event& event) override {
 		//WY_TRACE("{0}", event);
+		
+		if (event.GetEventType() == Wylder::EventType::KeyPressed) {
+			Wylder::KeyPressedEvent& keyPressed = (Wylder::KeyPressedEvent&)event;
+			WY_TRACE("Key Pressed = {0}", keyPressed.GetKeyCode());
+		}
+
+		
 	}
 };
 
