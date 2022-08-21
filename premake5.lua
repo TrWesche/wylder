@@ -54,6 +54,7 @@ project "Wylder"
 		defines{
 			"WY_PLATFORM_WINDOWS",
 			"WY_BUILD_DLL",
+			"WY_OPENGL_USE_GLFW",
 			"GLFW_INCLUDE_NONE"
 		}
 

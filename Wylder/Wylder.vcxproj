@@ -79,7 +79,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wypch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WY_PLATFORM_WINDOWS;WY_BUILD_DLL;GLFW_INCLUDE_NONE;WY_DEBUG;WY_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WY_PLATFORM_WINDOWS;WY_BUILD_DLL;WY_OPENGL_USE_GLFW;GLFW_INCLUDE_NONE;WY_DEBUG;WY_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\GLFW\include;vendor\Glad\include;vendor\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -101,7 +101,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wypch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WY_PLATFORM_WINDOWS;WY_BUILD_DLL;GLFW_INCLUDE_NONE;WY_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WY_PLATFORM_WINDOWS;WY_BUILD_DLL;WY_OPENGL_USE_GLFW;GLFW_INCLUDE_NONE;WY_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\GLFW\include;vendor\Glad\include;vendor\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -127,7 +127,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>wypch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WY_PLATFORM_WINDOWS;WY_BUILD_DLL;GLFW_INCLUDE_NONE;WY_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WY_PLATFORM_WINDOWS;WY_BUILD_DLL;WY_OPENGL_USE_GLFW;GLFW_INCLUDE_NONE;WY_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\GLFW\include;vendor\Glad\include;vendor\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -181,6 +181,7 @@
     <ClCompile Include="src\Wylder\Application.cpp" />
     <ClCompile Include="src\Wylder\GUI\ImGuiGLFWImpl.cpp" />
     <ClCompile Include="src\Wylder\GUI\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Wylder\GUI\KeyCodes.cpp" />
     <ClCompile Include="src\Wylder\Layer.cpp" />
     <ClCompile Include="src\Wylder\LayerStack.cpp" />
     <ClCompile Include="src\Wylder\Log.cpp" />

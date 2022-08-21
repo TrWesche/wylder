@@ -27,6 +27,12 @@
     <ClInclude Include="src\GraphicsAPI\OpenGL\ImGuiOpenGLRenderer.h">
       <Filter>GraphicsAPI\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\GraphicsAPI\OpenGL\imgui_impl_opengl3_loader.h">
+      <Filter>GraphicsAPI\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -55,11 +61,23 @@
     <ClInclude Include="src\Wylder\Events\WindowEvent.h">
       <Filter>Wylder\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Wylder\GUI\ControllerCodes.h">
+      <Filter>Wylder\GUI</Filter>
+    </ClInclude>
     <ClInclude Include="src\Wylder\GUI\ImGuiGLFWImpl.h">
       <Filter>Wylder\GUI</Filter>
     </ClInclude>
     <ClInclude Include="src\Wylder\GUI\ImGuiLayer.h">
       <Filter>Wylder\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wylder\GUI\KeyCodes.h">
+      <Filter>Wylder\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wylder\GUI\MouseCodes.h">
+      <Filter>Wylder\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wylder\Input.h">
+      <Filter>Wylder</Filter>
     </ClInclude>
     <ClInclude Include="src\Wylder\Layer.h">
       <Filter>Wylder</Filter>
@@ -74,16 +92,13 @@
       <Filter>Wylder</Filter>
     </ClInclude>
     <ClInclude Include="src\wypch.h" />
-    <ClInclude Include="src\GraphicsAPI\OpenGL\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="src\Wylder\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\Wylder\GUI\KeyCodes.h" />
-    <ClInclude Include="src\Wylder\GUI\ControllerCodes.h" />
-    <ClInclude Include="src\Wylder\GUI\MouseCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GraphicsAPI\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>GraphicsAPI\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
@@ -107,6 +122,6 @@
       <Filter>Wylder</Filter>
     </ClCompile>
     <ClCompile Include="src\wypch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Wylder\GUI\KeyCodes.cpp" />
   </ItemGroup>
 </Project>
