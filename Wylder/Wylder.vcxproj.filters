@@ -112,6 +112,9 @@
     <ClCompile Include="src\Wylder\GUI\ImGuiLayer.cpp">
       <Filter>Wylder\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="src\Wylder\GUI\KeyCodes.cpp">
+      <Filter>Wylder\GUI</Filter>
+    </ClCompile>
     <ClCompile Include="src\Wylder\Layer.cpp">
       <Filter>Wylder</Filter>
     </ClCompile>
@@ -122,6 +125,5 @@
       <Filter>Wylder</Filter>
     </ClCompile>
     <ClCompile Include="src\wypch.cpp" />
-    <ClCompile Include="src\Wylder\GUI\KeyCodes.cpp" />
   </ItemGroup>
 </Project>

@@ -6,9 +6,9 @@
 
 namespace Wylder {
 	#ifdef WY_OPENGL_USE_GLFW
-	static WylderKey ExtKeyToWylderKey(int glfwKeycode)
+	WylderKey ExtKeyToWylderKey(int extKeycode)
 	{
-        switch (glfwKeycode)
+        switch (extKeycode)
         {
             case GLFW_KEY_TAB:              return WY_KEY_TAB;
             case GLFW_KEY_LEFT:             return WY_KEY_LEFT;
@@ -132,9 +132,9 @@ namespace Wylder {
         }
 	}
 
-    static WylderModifier ExtModifierToWylderModifier(int glfwModifier)
+    WylderModifier ExtModifierToWylderModifier(int extModifier)
 	{
-        switch (glfwModifier)
+        switch (extModifier)
         {
             case GLFW_MOD_SHIFT:            return WY_MOD_SHIFT;
             case GLFW_MOD_CONTROL:          return WY_MOD_CONTROL;
@@ -148,9 +148,9 @@ namespace Wylder {
 	}
 
 
-    static WylderMouseButton ExtMouseButtonToWylderMouseButton(int glfwMouseButton)
+    WylderMouseButton ExtMouseButtonToWylderMouseButton(int extMouseButton)
 	{
-        switch (glfwMouseButton)
+        switch (extMouseButton)
         {
         case GLFW_MOUSE_BUTTON_1:       return WY_MOUSE_BUTTON_1;
         case GLFW_MOUSE_BUTTON_2:       return WY_MOUSE_BUTTON_2;
@@ -166,17 +166,17 @@ namespace Wylder {
 	}
 
 
-    static WylderGamepadButton ExtGamepadButtonToWylderGamepadButton(int glfwGPButton)
+    WylderGamepadButton ExtGamepadButtonToWylderGamepadButton(int extGPButton)
 	{
 		return WY_GAMEPAD_BUTTON_A;
 	}
 
-    static WylderGamepadAxis ExtGamepadAxisToWylderGamepadAxis(int glfwGPAxis)
+    WylderGamepadAxis ExtGamepadAxisToWylderGamepadAxis(int extGPAxis)
 	{
 		return WY_GAMEPAD_AXIS_LEFT_X;
 	}
 
-    static WylderJoysticks ExtJoysticksToWylderJoysticks(int glfwJoystick)
+    WylderJoysticks ExtJoysticksToWylderJoysticks(int extJoystick)
 	{
 		return WY_JOYSTICK_1;
 	}

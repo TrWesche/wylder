@@ -9,6 +9,12 @@ namespace Wylder {
 	//typedef int WylderJoysticks;            // -> enum WylderJoysticks_         // Enum: A key identifier
 
 	// Key Codes Pulled from GLFW Library - 2022-08-20
+	enum WylderKeyStates {
+		WY_RELEASE = 0,
+		WY_PRESS = 1,
+		WY_REPEAT = 2
+	};
+
 
 	/* Printable & Function Keys */
 	enum WylderKey
@@ -140,12 +146,12 @@ namespace Wylder {
 		WY_JOYSTICK_LAST = WY_JOYSTICK_16
 	};
 
-	static WylderKey ExtKeyToWylderKey(int glfwKeycode);
-	static WylderModifier ExtModifierToWylderModifier(int glfwModifier);
-	static WylderMouseButton ExtMouseButtonToWylderMouseButton(int glfwMouseButton);
-	static WylderGamepadButton ExtGamepadButtonToWylderGamepadButton(int glfwGPButton);
-	static WylderGamepadAxis ExtGamepadAxisToWylderGamepadAxis(int glfwGPAxis);
-	static WylderJoysticks ExtJoysticksToWylderJoysticks(int glfwJoystick);
+	WylderKey ExtKeyToWylderKey(int extKeycode);
+	WylderModifier ExtModifierToWylderModifier(int extModifier);
+	WylderMouseButton ExtMouseButtonToWylderMouseButton(int extMouseButton);
+	WylderGamepadButton ExtGamepadButtonToWylderGamepadButton(int extGPButton);
+	WylderGamepadAxis ExtGamepadAxisToWylderGamepadAxis(int extGPAxis);
+	WylderJoysticks ExtJoysticksToWylderJoysticks(int extJoystick);
 }
 
 
