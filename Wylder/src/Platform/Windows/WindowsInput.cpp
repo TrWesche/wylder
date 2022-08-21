@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 
 namespace Wylder {
-	Input* Input::sInstance = new WindowsInput();
+	Input* Input::sInstance = new WindowsInput();   // The Windows Input will initialize independently of the Application?
 
 	bool WindowsInput::IsKeyPressedImpl(const int keycode)
 	{

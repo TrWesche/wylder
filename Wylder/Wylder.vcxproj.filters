@@ -61,9 +61,6 @@
     <ClInclude Include="src\Wylder\Events\WindowEvent.h">
       <Filter>Wylder\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Wylder\GUI\ControllerCodes.h">
-      <Filter>Wylder\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="src\Wylder\GUI\ImGuiGLFWImpl.h">
       <Filter>Wylder\GUI</Filter>
     </ClInclude>
@@ -71,9 +68,6 @@
       <Filter>Wylder\GUI</Filter>
     </ClInclude>
     <ClInclude Include="src\Wylder\GUI\KeyCodes.h">
-      <Filter>Wylder\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Wylder\GUI\MouseCodes.h">
       <Filter>Wylder\GUI</Filter>
     </ClInclude>
     <ClInclude Include="src\Wylder\Input.h">

@@ -35,9 +35,6 @@ namespace Wylder {
 		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
-
-		
-
 		//ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
@@ -52,9 +49,9 @@ namespace Wylder {
 		ImGuiIO& io = ImGui::GetIO();
 		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
 
-		/*float time = (float)glfwGetTime();
+		float time = (float)glfwGetTime();
 		io.DeltaTime = (mTime > 0.0f ? (time - mTime) : (1.0f / 60.0f));
-		mTime = time;*/
+		mTime = time;
 
 
         //ImGui_ImplGlfw_NewFrame();
@@ -202,118 +199,6 @@ namespace Wylder {
         }
     }
 
-	//static ImGuiKey TranslateGLFWKeytoImGuiKey(int key) {
- //       switch (key)
- //       {
- //           case GLFW_KEY_TAB: return ImGuiKey_Tab;
- //           case GLFW_KEY_LEFT: return ImGuiKey_LeftArrow;
- //           case GLFW_KEY_RIGHT: return ImGuiKey_RightArrow;
- //           case GLFW_KEY_UP: return ImGuiKey_UpArrow;
- //           case GLFW_KEY_DOWN: return ImGuiKey_DownArrow;
- //           case GLFW_KEY_PAGE_UP: return ImGuiKey_PageUp;
- //           case GLFW_KEY_PAGE_DOWN: return ImGuiKey_PageDown;
- //           case GLFW_KEY_HOME: return ImGuiKey_Home;
- //           case GLFW_KEY_END: return ImGuiKey_End;
- //           case GLFW_KEY_INSERT: return ImGuiKey_Insert;
- //           case GLFW_KEY_DELETE: return ImGuiKey_Delete;
- //           case GLFW_KEY_BACKSPACE: return ImGuiKey_Backspace;
- //           case GLFW_KEY_SPACE: return ImGuiKey_Space;
- //           case GLFW_KEY_ENTER: return ImGuiKey_Enter;
- //           case GLFW_KEY_ESCAPE: return ImGuiKey_Escape;
- //           case GLFW_KEY_APOSTROPHE: return ImGuiKey_Apostrophe;
- //           case GLFW_KEY_COMMA: return ImGuiKey_Comma;
- //           case GLFW_KEY_MINUS: return ImGuiKey_Minus;
- //           case GLFW_KEY_PERIOD: return ImGuiKey_Period;
- //           case GLFW_KEY_SLASH: return ImGuiKey_Slash;
- //           case GLFW_KEY_SEMICOLON: return ImGuiKey_Semicolon;
- //           case GLFW_KEY_EQUAL: return ImGuiKey_Equal;
- //           case GLFW_KEY_LEFT_BRACKET: return ImGuiKey_LeftBracket;
- //           case GLFW_KEY_BACKSLASH: return ImGuiKey_Backslash;
- //           case GLFW_KEY_RIGHT_BRACKET: return ImGuiKey_RightBracket;
- //           case GLFW_KEY_GRAVE_ACCENT: return ImGuiKey_GraveAccent;
- //           case GLFW_KEY_CAPS_LOCK: return ImGuiKey_CapsLock;
- //           case GLFW_KEY_SCROLL_LOCK: return ImGuiKey_ScrollLock;
- //           case GLFW_KEY_NUM_LOCK: return ImGuiKey_NumLock;
- //           case GLFW_KEY_PRINT_SCREEN: return ImGuiKey_PrintScreen;
- //           case GLFW_KEY_PAUSE: return ImGuiKey_Pause;
- //           case GLFW_KEY_KP_0: return ImGuiKey_Keypad0;
- //           case GLFW_KEY_KP_1: return ImGuiKey_Keypad1;
- //           case GLFW_KEY_KP_2: return ImGuiKey_Keypad2;
- //           case GLFW_KEY_KP_3: return ImGuiKey_Keypad3;
- //           case GLFW_KEY_KP_4: return ImGuiKey_Keypad4;
- //           case GLFW_KEY_KP_5: return ImGuiKey_Keypad5;
- //           case GLFW_KEY_KP_6: return ImGuiKey_Keypad6;
- //           case GLFW_KEY_KP_7: return ImGuiKey_Keypad7;
- //           case GLFW_KEY_KP_8: return ImGuiKey_Keypad8;
- //           case GLFW_KEY_KP_9: return ImGuiKey_Keypad9;
- //           case GLFW_KEY_KP_DECIMAL: return ImGuiKey_KeypadDecimal;
- //           case GLFW_KEY_KP_DIVIDE: return ImGuiKey_KeypadDivide;
- //           case GLFW_KEY_KP_MULTIPLY: return ImGuiKey_KeypadMultiply;
- //           case GLFW_KEY_KP_SUBTRACT: return ImGuiKey_KeypadSubtract;
- //           case GLFW_KEY_KP_ADD: return ImGuiKey_KeypadAdd;
- //           case GLFW_KEY_KP_ENTER: return ImGuiKey_KeypadEnter;
- //           case GLFW_KEY_KP_EQUAL: return ImGuiKey_KeypadEqual;
- //           case GLFW_KEY_LEFT_SHIFT: return ImGuiKey_LeftShift;
- //           case GLFW_KEY_LEFT_CONTROL: return ImGuiKey_LeftCtrl;
- //           case GLFW_KEY_LEFT_ALT: return ImGuiKey_LeftAlt;
- //           case GLFW_KEY_LEFT_SUPER: return ImGuiKey_LeftSuper;
- //           case GLFW_KEY_RIGHT_SHIFT: return ImGuiKey_RightShift;
- //           case GLFW_KEY_RIGHT_CONTROL: return ImGuiKey_RightCtrl;
- //           case GLFW_KEY_RIGHT_ALT: return ImGuiKey_RightAlt;
- //           case GLFW_KEY_RIGHT_SUPER: return ImGuiKey_RightSuper;
- //           case GLFW_KEY_MENU: return ImGuiKey_Menu;
- //           case GLFW_KEY_0: return ImGuiKey_0;
- //           case GLFW_KEY_1: return ImGuiKey_1;
- //           case GLFW_KEY_2: return ImGuiKey_2;
- //           case GLFW_KEY_3: return ImGuiKey_3;
- //           case GLFW_KEY_4: return ImGuiKey_4;
- //           case GLFW_KEY_5: return ImGuiKey_5;
- //           case GLFW_KEY_6: return ImGuiKey_6;
- //           case GLFW_KEY_7: return ImGuiKey_7;
- //           case GLFW_KEY_8: return ImGuiKey_8;
- //           case GLFW_KEY_9: return ImGuiKey_9;
- //           case GLFW_KEY_A: return ImGuiKey_A;
- //           case GLFW_KEY_B: return ImGuiKey_B;
- //           case GLFW_KEY_C: return ImGuiKey_C;
- //           case GLFW_KEY_D: return ImGuiKey_D;
- //           case GLFW_KEY_E: return ImGuiKey_E;
- //           case GLFW_KEY_F: return ImGuiKey_F;
- //           case GLFW_KEY_G: return ImGuiKey_G;
- //           case GLFW_KEY_H: return ImGuiKey_H;
- //           case GLFW_KEY_I: return ImGuiKey_I;
- //           case GLFW_KEY_J: return ImGuiKey_J;
- //           case GLFW_KEY_K: return ImGuiKey_K;
- //           case GLFW_KEY_L: return ImGuiKey_L;
- //           case GLFW_KEY_M: return ImGuiKey_M;
- //           case GLFW_KEY_N: return ImGuiKey_N;
- //           case GLFW_KEY_O: return ImGuiKey_O;
- //           case GLFW_KEY_P: return ImGuiKey_P;
- //           case GLFW_KEY_Q: return ImGuiKey_Q;
- //           case GLFW_KEY_R: return ImGuiKey_R;
- //           case GLFW_KEY_S: return ImGuiKey_S;
- //           case GLFW_KEY_T: return ImGuiKey_T;
- //           case GLFW_KEY_U: return ImGuiKey_U;
- //           case GLFW_KEY_V: return ImGuiKey_V;
- //           case GLFW_KEY_W: return ImGuiKey_W;
- //           case GLFW_KEY_X: return ImGuiKey_X;
- //           case GLFW_KEY_Y: return ImGuiKey_Y;
- //           case GLFW_KEY_Z: return ImGuiKey_Z;
- //           case GLFW_KEY_F1: return ImGuiKey_F1;
- //           case GLFW_KEY_F2: return ImGuiKey_F2;
- //           case GLFW_KEY_F3: return ImGuiKey_F3;
- //           case GLFW_KEY_F4: return ImGuiKey_F4;
- //           case GLFW_KEY_F5: return ImGuiKey_F5;
- //           case GLFW_KEY_F6: return ImGuiKey_F6;
- //           case GLFW_KEY_F7: return ImGuiKey_F7;
- //           case GLFW_KEY_F8: return ImGuiKey_F8;
- //           case GLFW_KEY_F9: return ImGuiKey_F9;
- //           case GLFW_KEY_F10: return ImGuiKey_F10;
- //           case GLFW_KEY_F11: return ImGuiKey_F11;
- //           case GLFW_KEY_F12: return ImGuiKey_F12;
- //           default: return ImGuiKey_None;
- //       }
-	//}
-
     static int HandleWylderKeyToModifier(int key)
     {
         if (key == WY_KEY_LEFT_CONTROL || key == WY_KEY_RIGHT_CONTROL)
@@ -327,29 +212,16 @@ namespace Wylder {
         return 0;
     }
 
-    //static int HandleGlfwKeyToModifier(int key)
-    //{
-    //    if (key == GLFW_KEY_LEFT_CONTROL || key == GLFW_KEY_RIGHT_CONTROL)
-    //        return GLFW_MOD_CONTROL;
-    //    if (key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_SHIFT)
-    //        return GLFW_MOD_SHIFT;
-    //    if (key == GLFW_KEY_LEFT_ALT || key == GLFW_KEY_RIGHT_ALT)
-    //        return GLFW_MOD_ALT;
-    //    if (key == GLFW_KEY_LEFT_SUPER || key == GLFW_KEY_RIGHT_SUPER)
-    //        return GLFW_MOD_SUPER;
-    //    return 0;
-    //}
-
 
     static void ImGuiUpdateKeyModifiers(int mods, bool down)
     {
         ImGuiIO& io = ImGui::GetIO();
 
-        // Translate ImGui Modifier Codes to GLFW Modifier Codes
+        // Translate ImGui Modifier Codes to Wylder Modifier Codes
         int ioKeyMods = 0;
-        if (io.KeyMods & ImGuiKeyModFlags_Ctrl)                 // ImGui Control = 0x0001 while GLFW Control = 0x0002
+        if (io.KeyMods & ImGuiKeyModFlags_Ctrl)                 // ImGui Control = 0x0001 while WYLDER Control = 0x0002
             ioKeyMods = ioKeyMods | WY_MOD_CONTROL;
-        if (io.KeyMods & ImGuiKeyModFlags_Shift)                // ImGui Shift = 0x0002 while GLFW Shift = 0x0001
+        if (io.KeyMods & ImGuiKeyModFlags_Shift)                // ImGui Shift = 0x0002 while WYLDER Shift = 0x0001
             ioKeyMods = ioKeyMods | WY_MOD_SHIFT;
         if (io.KeyMods & ImGuiKeyModFlags_Alt)
             ioKeyMods = ioKeyMods | WY_MOD_ALT;
@@ -361,11 +233,9 @@ namespace Wylder {
         int accMods = mods;
         if (down) {
             accMods = mods | ioKeyMods;
-            //WY_INFO("Acc Mods Pressed {0}", accMods);
         }
         else {
             accMods = ioKeyMods ^ mods;
-            //WY_INFO("Acc Mods Released {0}", accMods);
         }
 
         io.AddKeyEvent(ImGuiKey_ModCtrl, (accMods & WY_MOD_CONTROL) != 0);
@@ -373,39 +243,6 @@ namespace Wylder {
         io.AddKeyEvent(ImGuiKey_ModAlt, (accMods & WY_MOD_ALT) != 0);
         io.AddKeyEvent(ImGuiKey_ModSuper, (accMods & WY_MOD_SUPER) != 0);
     }
-
-    //static void ImGuiUpdateKeyModifiers(int mods, bool down)
-    //{
-    //    ImGuiIO& io = ImGui::GetIO();
-    //    
-    //    // Translate ImGui Modifier Codes to GLFW Modifier Codes
-    //    int ioKeyMods = 0;
-    //    if (io.KeyMods & ImGuiKeyModFlags_Ctrl)                 // ImGui Control = 0x0001 while GLFW Control = 0x0002
-    //        ioKeyMods = ioKeyMods | GLFW_MOD_CONTROL;
-    //    if (io.KeyMods & ImGuiKeyModFlags_Shift)                // ImGui Shift = 0x0002 while GLFW Shift = 0x0001
-    //        ioKeyMods = ioKeyMods | GLFW_MOD_SHIFT;
-    //    if (io.KeyMods & ImGuiKeyModFlags_Alt)
-    //        ioKeyMods = ioKeyMods | GLFW_MOD_ALT;
-    //    if (io.KeyMods & ImGuiKeyModFlags_Super)
-    //        ioKeyMods = ioKeyMods | GLFW_MOD_SUPER;
-
-    //    // Handle for Pressed / Released.  If pressed we want to accumulate the newly pressed key.
-    //    // If released we want to retain the previous pressed key and toggle the released key off.
-    //    int accMods = mods;
-    //    if (down) {
-    //        accMods = mods | ioKeyMods;
-    //        //WY_INFO("Acc Mods Pressed {0}", accMods);
-    //    }
-    //    else {
-    //        accMods = ioKeyMods ^ mods;
-    //        //WY_INFO("Acc Mods Released {0}", accMods);
-    //    }
-    //    
-    //    io.AddKeyEvent(ImGuiKey_ModCtrl, (accMods & GLFW_MOD_CONTROL) != 0);
-    //    io.AddKeyEvent(ImGuiKey_ModShift, (accMods & GLFW_MOD_SHIFT) != 0);
-    //    io.AddKeyEvent(ImGuiKey_ModAlt, (accMods & GLFW_MOD_ALT) != 0);
-    //    io.AddKeyEvent(ImGuiKey_ModSuper, (accMods & GLFW_MOD_SUPER) != 0);
-    //}
 
     void ImGui_ImplGlfw_CharCallback(GLFWwindow* window, unsigned int c)
     {
@@ -415,40 +252,29 @@ namespace Wylder {
 
     bool ImGuiLayer::OnKeyPressed(KeyPressedEvent& event)
     {
-        //WY_INFO("ImGui Layer Key Pressed Event Captured: GLFW Key = {0}, ImGuiKey = {1}", event.GetKeyCode(), TranslateGLFWKeytoImGuiKey(event.GetKeyCode()) );
         int keycode_to_mod = HandleWylderKeyToModifier( ExtKeyToWylderKey(event.GetKeyCode()) );
         if (keycode_to_mod) {
-            //WY_INFO("ImGui Modifier Key Pressed, update key modifiers: Key {0}", keycode_to_mod);
-            //ImGuiUpdateKeyModifiers(keycode_to_mod, GLFW_PRESS);
             ImGuiUpdateKeyModifiers(keycode_to_mod, WY_PRESS);
         }
 
         ImGuiKey eventKey = TranslateWylderKeytoImGuiKey( ExtKeyToWylderKey(event.GetKeyCode()) );
         ImGuiIO& io = ImGui::GetIO();
-        //io.AddKeyEvent(eventKey, GLFW_PRESS);
         io.AddKeyEvent(eventKey, WY_PRESS);
 
-
-        //WY_INFO("Modifier Keys Pressed {0}", io.KeyMods);
         return true;
     }
 
     bool ImGuiLayer::OnKeyReleased(KeyReleasedEvent& event)
     {
-        //WY_INFO("ImGui Layer Key Released Event Captured: GLFW Key = {0}, ImGuiKey = {1}", event.GetKeyCode(), TranslateGLFWKeytoImGuiKey(event.GetKeyCode()));
         int keycode_to_mod = HandleWylderKeyToModifier( ExtKeyToWylderKey(event.GetKeyCode()) );
         if (keycode_to_mod) {
-            //WY_INFO("ImGui Modifier Key Released, update key modifiers: Key {0}", keycode_to_mod);
-            //ImGuiUpdateKeyModifiers(keycode_to_mod, GLFW_RELEASE);
             ImGuiUpdateKeyModifiers(keycode_to_mod, WY_RELEASE);
         }
 
         ImGuiKey eventKey = TranslateWylderKeytoImGuiKey( ExtKeyToWylderKey(event.GetKeyCode()) );
         ImGuiIO& io = ImGui::GetIO();
-        //io.AddKeyEvent(eventKey, GLFW_RELEASE);
         io.AddKeyEvent(eventKey, WY_RELEASE);
 
-        //WY_INFO("Modifier Keys Released {0}", io.KeyMods);
         return true;
     }
 
@@ -463,18 +289,14 @@ namespace Wylder {
 
     bool ImGuiLayer::OnMouseButtonPressed(MouseButtonPressedEvent& event)
     {
-        //WY_INFO("ImGui Layer Mouse Button Pressed Event Captured: GLFW Key = {0}", event.GetButtonIdentifier());
         ImGuiIO& io = ImGui::GetIO();
-        //io.AddMouseButtonEvent(event.GetButtonIdentifier(), GLFW_PRESS);
         io.AddMouseButtonEvent( ExtMouseButtonToWylderMouseButton(event.GetButtonIdentifier()), WY_PRESS);
         return true;
     }
 
     bool ImGuiLayer::OnMouseButtonReleased(MouseButtonReleasedEvent& event)
     {
-        //WY_INFO("ImGui Layer Mouse Button Released Event Captured: GLFW Key = {0}", event.GetButtonIdentifier());
         ImGuiIO& io = ImGui::GetIO();
-        //io.AddMouseButtonEvent(event.GetButtonIdentifier(), GLFW_RELEASE);
         io.AddMouseButtonEvent( ExtMouseButtonToWylderMouseButton(event.GetButtonIdentifier()), WY_RELEASE);
 
         return true;
@@ -482,7 +304,6 @@ namespace Wylder {
 
     bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& event)
     {
-        //WY_INFO("ImGui Layer Mouse Move Event Captured: X: {0}, Y: {1}", event.GetPositionX(), event.GetPositionY());
         ImGuiIO& io = ImGui::GetIO();
         io.AddMousePosEvent(event.GetPositionX(), event.GetPositionY());
         return true;
@@ -490,7 +311,6 @@ namespace Wylder {
 
     bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent& event)
     {
-        //WY_INFO("ImGui Layer Mouse Scroll Event Captured: OffsetX: {0}, OffsetY: {1}", event.GetOffsetX(), event.GetOffsetY());
         ImGuiIO& io = ImGui::GetIO();
         io.AddMouseWheelEvent(event.GetOffsetX(), event.GetOffsetY());
         return true;
@@ -506,7 +326,6 @@ namespace Wylder {
 
     bool ImGuiLayer::OnWindowLostFocusEvent(WindowLostFocusEvent& event)
     {
-        WY_INFO("ImGui Window Focus Event Captured: False");
         ImGuiIO& io = ImGui::GetIO();
         io.AddFocusEvent(false);
         return true;
@@ -514,11 +333,10 @@ namespace Wylder {
 
     bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& event)
     {
-        WY_INFO("ImGui Window Resize Event Captured: Dimension X={0}, Dimension Y={1}", event.GetSizeX(), event.GetSizeY());
         ImGuiIO& io = ImGui::GetIO();
         io.DisplaySize = ImVec2(event.GetSizeX(), event.GetSizeY());
         io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
-        // Temporary
+        // TODO:: Temporary
         glViewport(0, 0, event.GetSizeX(), event.GetSizeY());
 
         return true;
