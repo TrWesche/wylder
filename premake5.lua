@@ -9,6 +9,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Wylder/vendor/GLFW/include"
 IncludeDir["Glad"] = "Wylder/vendor/Glad/include"
 IncludeDir["ImGui"] = "Wylder/vendor/ImGui"
+IncludeDir["glm"] = "Wylder/vendor/glm"
 
 -- This tells premake to search these directories for additional premake5.lua files to process.
 include "Wylder/vendor/GLFW"
@@ -36,7 +37,8 @@ project "Wylder"
 		"%{wks.name}/src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	-- Setup Project Dependencies
@@ -101,7 +103,8 @@ project "Sandbox"
 
 	includedirs {
 		"Wylder/vendor/spdlog/include",
-		"Wylder/src"
+		"Wylder/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links {

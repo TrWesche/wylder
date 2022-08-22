@@ -10,3 +10,6 @@
 [submodule "Wylder/vendor/ImGui"]
 	path = Wylder/vendor/ImGui
 	url = https://github.com/TrWesche/imgui
+[submodule "Wylder/vendor/glm"]
+	path = Wylder/vendor/glm
+	url = https://github.com/g-truc/glm
